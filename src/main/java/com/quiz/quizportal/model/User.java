@@ -13,13 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Entity
 @Table(name = "users")
 public class User {
@@ -32,13 +33,12 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
+
 	private String phone;
 	private boolean enabled = true;
 	private String profile;
-	
-	//user can have many roles
-	@OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER,
-			mappedBy = "user")
+
+	// user can have many roles
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
 	private Set<UserRole> userRoles = new HashSet<>();
 }
